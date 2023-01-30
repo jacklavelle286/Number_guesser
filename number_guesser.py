@@ -24,28 +24,35 @@ def computer_guess():
     return computer_num
 
 
-guess_com = computer_guess()
-counter = 0
-
-while counter < 10:
-    guess_user = user_guess()
-    if guess_user > 50 and difficulty == "e":
-        print("You selected easy, the max value is 50, try again. ")
-    elif guess_user > 100 and difficulty == "h":
-        print("You selected hard, the max value is 100, try again. ")
-
-    else:
-        print(f"Your guess is {guess_user}.")
-        counter += 1
-        if guess_com > guess_user:
-            print(
-                f"Too low! Guess again. You are on attempt {counter} out of 10.")
-        elif guess_com < guess_user:
-            print(
-                f"Too high! Guess again. You are on attempt {counter} out of 10.")
+play_again = "yes"
+while play_again == "yes":
+    guess_com = computer_guess()
+    counter = 0
+    while counter < 10:
+        guess_user = user_guess()
+        if guess_user > 50 and difficulty == "e":
+            print("You selected easy, the max value is 50, try again. ")
+        elif guess_user > 100 and difficulty == "h":
+            print("You selected hard, the max value is 100, try again. ")
         else:
-            print(
-                f"You got it, it took you {counter} tries and the computer's guess was {guess_com}.")
-            break
-else:
-    print("You have run out of tries.")
+            print(f"Your guess is {guess_user}.")
+            counter += 1
+            if guess_com > guess_user:
+                print(
+                    f"Too low! Guess again. You are on attempt {counter} out of 10.")
+            elif guess_com < guess_user:
+                print(
+                    f"Too high! Guess again. You are on attempt {counter} out of 10.")
+            else:
+                print(
+                    f"You got it, it took you {counter} tries and the computer's guess was {guess_com}.")
+                break
+    else:
+        print("You have run out of tries.")
+        
+    play_again = input("Do you want to play again? (yes/no) ")
+    while play_again not in ["yes", "no"]:
+        print("Invalid input, please enter either 'yes' or 'no'.")
+        play_again = input("Do you want to play again? (yes/no) ")
+
+print("Thanks for playing!")
